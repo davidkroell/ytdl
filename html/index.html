@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Download from YouTube</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+
+</head>
+
+<body>
+    <div class="container">
+        <form action="/start-dl" method="POST">
+            <legend>Download MP3 from YouTube</legend>
+
+            <div class="form-group">
+                <label for="url">URL of the video</label>
+                <input type="text" class="form-control" id="url" placeholder="Paste URL here" name="url">
+            </div>
+
+            <div class="form-group">
+                <label for="filename">Name of the downloaded file</label>
+                <input type="text" class="form-control" id="filename" placeholder="Filename" name="filename">
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="startAt">Start at</label>
+                    <input type="text" class="form-control" id="startAt" placeholder="00:00.000" name="startAt">
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="endAt">End at</label>
+                    <input type="text" class="form-control" id="endAt" placeholder="00:00.000" name="endAt">
+                </div>
+            </div>
+
+            <button id="btn-download" type="submit" class="btn btn-primary">Download</button>
+        </form>
+    </div>
+</body>
+
+</html>
