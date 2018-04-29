@@ -10,11 +10,6 @@ var bodyParser = require('body-parser')
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(express.json());
-app.use(express.urlencoded());
-
-//var url = 'https://www.youtube.com/watch?v=Hrph2EW9VjY'
-
 app.use(express.static(__dirname + '/html'));
 
 app.get('/', function (req, res) {

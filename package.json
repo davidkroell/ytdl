@@ -1,0 +1,31 @@
+{
+  "name": "ytdl",
+  "version": "1.0.0",
+  "description": "Web-based YouTube MP3 downloader",
+  "main": "ytdl.js",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "ytdl-core": "^0.20.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/david-kroell/ytdl.git"
+  },
+  "keywords": [
+    "mp3",
+    "node",
+    "ffmpeg"
+  ],
+  "author": "David Kröll",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/david-kroell/ytdl/issues"
+  },
+  "homepage": "https://github.com/david-kroell/ytdl#readme"
+}
