@@ -35,8 +35,7 @@ app.post('/start-dl', function (req, res) {
     
     var duration = endSeconds - startSeconds;
 
-    console.log("Start downloading", filename, "from", dlUrl);
-
+    console.log(new Date().toISOString()," - ", "start downloading", filename, "from", dlUrl);
 
     let stream = ytdl(dlUrl, {
         quality: 'highestaudio'
