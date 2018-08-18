@@ -42,9 +42,9 @@ app.post('/start-dl', function (req, res) {
     let endSeconds = (+convertionHelper[0]) * 60 + (+convertionHelper[1]);
 
     let duration = endSeconds - startSeconds;
-
-    let ip = req.headers[process.env.PROXY_HEADER_REAL_IP_KEY] || req.connection.remoteAddress;
-    console.info(new Date().toISOString(), '-', '[' + ip + ']',
+    
+    let ip = req.get(process.env.PROXY_HEADER_REAL_IP_KEY) || req.connection.remoteAddress;
+    console.info(new Date().toISOString(), '[IP:' + ip + ']', '-', 
         'start downloading', title, 'from', dlUrl);
 
     let stream = ytdl(dlUrl, {
