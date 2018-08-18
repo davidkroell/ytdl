@@ -14,31 +14,61 @@
 
     <!-- GitHub star button -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        function clearInputs() {
+            setTimeout(() => {
+                $(".form-control:not(#startAt)").val('')
+            }, 1000);
+        }
+    </script>
 </head>
 
 <body>
     <div class="container">
-        <form action="/start-dl" method="POST">
+        <form action="/start-dl" method="POST" onsubmit="clearInputs()">
             <legend>Download MP3 from YouTube</legend>
 
-            <div class="form-group">
-                <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow @david-kroell</a>
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow @david-kroell</a>
 
-                <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked" data-size="large"
-                    aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
-                <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large" data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked" data-size="large"
+                        aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large" data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
 
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="url">URL of the video</label>
-                <input type="text" class="form-control" id="url" placeholder="Paste URL here" name="url">
+
+            <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="url">URL of the video*</label>
+                    <input type="text" class="form-control" id="url" placeholder="Paste URL here" name="url" required>
+                </div>
             </div>
 
-            <div class="form-group">
-                <label for="filename">Name of the downloaded file</label>
-                <input type="text" class="form-control" id="filename" placeholder="Filename" name="filename">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="title">Title (Filename)*</label>
+                    <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
+                </div>
             </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="artist">Artist</label>
+                    <input type="text" class="form-control" id="artist" placeholder="Artist" name="artist">
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="album">Album</label>
+                    <input type="text" class="form-control" id="album" placeholder="Album" name="album">
+                </div>
+            </div>
+            <div class="clearfix"></div>
 
             <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
@@ -54,7 +84,9 @@
                 </div>
             </div>
 
-            <button id="btn-download" type="submit" class="btn btn-primary">Download</button>
+            <div class="col-xs-12">
+                <button id="btn-download" type="submit" class="btn btn-primary">Download</button>
+            </div>
         </form>
     </div>
 </body>

@@ -9,9 +9,13 @@
     "fluent-ffmpeg": "^2.1.2",
     "ytdl-core": "^0.20.2"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "eslint": "^5.4.0"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm run lint && node ./ytdl.js",
+    "lint": "./node_modules/.bin/eslint .",
+    "lint-fix": "./node_modules/.bin/eslint . --fix"
   },
   "repository": {
     "type": "git",
