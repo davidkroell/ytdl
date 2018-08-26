@@ -18,17 +18,17 @@ app.get('/', function (req, res) {
     res.send('index.html');
 });
 
-app.post('/start-dl', function (req, res) {
-    let dlUrl = req.body.url;
+app.get('/dl', function (req, res) {
+    let dlUrl = req.query.url;
 
-    let title = req.body.title;
-    let artist = req.body.artist;
-    let album = req.body.album;
+    let title = req.query.title;
+    let artist = req.query.artist;
+    let album = req.query.album;
     let publisherStr =
         'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
 
-    let startAt = req.body.startAt;
-    let endAt = req.body.endAt;
+    let startAt = req.query.startAt;
+    let endAt = req.query.endAt;
 
     // calculate duration from start and end time
     // format:  mm:ss[.xxx]
@@ -42,9 +42,14 @@ app.post('/start-dl', function (req, res) {
     let endSeconds = (+convertionHelper[0]) * 60 + (+convertionHelper[1]);
 
     let duration = endSeconds - startSeconds;
-    
-    let ip = req.get(process.env.PROXY_HEADER_REAL_IP_KEY) || req.connection.remoteAddress;
-    console.info(new Date().toISOString(), '[IP:' + ip + ']', '-', 
+
+    let ip;
+    if (process.env.PROXY_HEADER_REAL_IP_KEY){
+        ip = req.get(process.env.PROXY_HEADER_REAL_IP_KEY);
+    }
+    ip = req.connection.remoteAddress;
+
+    console.info(new Date().toISOString(), '[IP:' + ip + ']', '-',
         'start downloading', title, 'from', dlUrl);
 
     let stream = ytdl(dlUrl, {
