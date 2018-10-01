@@ -16,23 +16,30 @@
     <script async defer src="https://buttons.github.io/buttons.js"></script>
 
     <script>
+
         function clearInputs() {
             setTimeout(() => {
                 $(".form-control:not(#startAt)").val('')
                 $(".form-control#startAt").val('00:00.000')
             }, 1000);
         }
+
         function copyLink() {
             //console.log("copying link");
+
             let form = $("#dl-form");
             let querystring = form.serialize();
             let baseurl = window.location.href;
             let action = form.attr("action");
+
             //console.log(baseurl, action, querystring);
+
             let downloadUrl = baseurl + action + "?" + querystring;
+
             copyToClipboard(downloadUrl);
             alert("Copied!")
         }
+
         const copyToClipboard = str => {
             const el = document.createElement('textarea');  // Create a <textarea> element
             el.value = str;                                 // Set its value to the string that you want copied
