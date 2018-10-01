@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>YouTube MP3-Download</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+    <script src="//code.jquery.com/jquery.min.js"></script>
+    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    
+    <!-- Language switcher -->
+    <script src="language/translations.js"></script>
+    <script src="language/swichter.js"></script>
+
+    <!-- GitHub star button -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+
+        function clearInputs() {
+            setTimeout(() => {
+                $(".form-control:not(#startAt)").val('')
+                $(".form-control#startAt").val('00:00.000')
+            }, 1000);
+        }
+
+        function copyLink() {
+            //console.log("copying link");
+
+            let form = $("#dl-form");
+            let querystring = form.serialize();
+            let baseurl = window.location.href;
+            let action = form.attr("action");
+
+            //console.log(baseurl, action, querystring);
+
+            let downloadUrl = baseurl + action + "?" + querystring;
+
+            copyToClipboard(downloadUrl);
+            alert("Copied!")
+        }
+
+        const copyToClipboard = str => {
+            const el = document.createElement('textarea');  // Create a <textarea> element
+            el.value = str;                                 // Set its value to the string that you want copied
+            el.setAttribute('readonly', '');                // Make it readonly to be tamper-proof
+            el.style.position = 'absolute';
+            el.style.left = '-9999px';                      // Move outside the screen to make it invisible
+            document.body.appendChild(el);                  // Append the <textarea> element to the HTML document
+            const selected =
+                document.getSelection().rangeCount > 0      // Check if there is any content selected previously
+                    ? document.getSelection().getRangeAt(0)     // Store selection if found
+                    : false;                                    // Mark as false to know no selection existed before
+            el.select();                                    // Select the <textarea> content
+            document.execCommand('copy');                   // Copy - only works as a result of a user action (e.g. click events)
+            document.body.removeChild(el);                  // Remove the <textarea> element
+            if (selected) {                                 // If a selection existed before copying
+                document.getSelection().removeAllRanges();    // Unselect everything on the HTML document
+                document.getSelection().addRange(selected);   // Restore the original selection
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <div class="container">
+        <form id="dl-form" action="dl" method="GET" onsubmit="clearInputs()">
+            <h1 data-mlr-text>YouTube MP3-Download</h1>
+
+            <div class="col-xs-12">
+                <h2>Language</h2>
+                <select name="language" class="form-control mb-POCControls_Selector" id="mbPOCControlsLangDrop">
+                </select>
+                
+                <div class="form-group">
+                    <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow @david-kroell</a>
+
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked" data-size="large"
+                        aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large" data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
+
+                </div>
+            </div>
+
+
+             <div class="col-xs-12">
+                <div class="form-group">
+                    <label for="url" data-mlr-text>URL of the video*</label>
+                    <input type="text" class="form-control" id="url" placeholder="https://www.youtube.com/watch?v=RuiBoAWfSJE" name="url" required>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="title" data-mlr-text>Filename*</label>
+                    <input type="text" class="form-control" id="title" placeholder="gamsjaga.mp3" name="title" required>
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="artist" data-mlr-text>Artist</label>
+                    <input type="text" class="form-control" id="artist" placeholder="Ursprung Buam" name="artist">
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="album" data-mlr-text>Album</label>
+                    <input type="text" class="form-control" id="album" placeholder="25 Jahre - 25 Titel" name="album">
+                </div>
+            </div>
+            <div class="clearfix"></div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="startAt" data-mlr-text>Start time</label>
+                    <input type="text" class="form-control" id="startAt" value="00:00.000" name="startAt">
+                </div>
+            </div>
+
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="form-group">
+                    <label for="endAt" data-mlr-text>End time</label>
+                    <input type="text" class="form-control" id="endAt" placeholder="00:00.000" name="endAt">
+                </div>
+            </div>
+
+            <div class="col-xs-12">
+                <button id="btn-download" type="submit" class="btn btn-primary" data-mlr-text>Download</button>
+                <button id="btn-get-link" type="button" class="btn btn-primary" onclick="copyLink()" data-mlr-text>Copy download-URL</button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>
