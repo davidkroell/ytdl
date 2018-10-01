@@ -1,3 +1,5 @@
+// Language Switcher by https://benfrain.com/creating-a-language-switcher-in-javascript/
+
 // Global var :(
 var mlrLangInUse;
 var mlr = function (_a) {
