@@ -12,6 +12,10 @@ var mlCodes = [
 ];
 var MLstrings = [
     {
+        English: "YouTube MP3-Download",
+        German: "Praktisches Werkzeug zum Herunterladen von YouTube-Videos im MP3-Format"
+    },
+    {
         English: "URL of the video*",
         German: "Link des Videos*"
     },
