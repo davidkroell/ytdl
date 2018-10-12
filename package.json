@@ -5,8 +5,11 @@
   "main": "ytdl.js",
   "dependencies": {
     "body-parser": "^1.18.2",
+    "chai": "^4.2.0",
+    "chai-http": "^4.2.0",
     "express": "^4.16.3",
     "fluent-ffmpeg": "^2.1.2",
+    "mocha": "^5.2.0",
     "ytdl-core": "^0.20.2"
   },
   "devDependencies": {
@@ -15,7 +18,8 @@
   "scripts": {
     "start": "npm run lint && node ./ytdl.js",
     "lint": "./node_modules/.bin/eslint .",
-    "lint-fix": "./node_modules/.bin/eslint . --fix"
+    "lint-fix": "./node_modules/.bin/eslint . --fix",
+    "test": "mocha"
   },
   "repository": {
     "type": "git",
