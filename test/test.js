@@ -8,7 +8,7 @@ let should = chai.should();
 
 chai.use(chaiHttp);
 
- describe('/GET homepage', () => {
+describe('/GET homepage', () => {
     it('it should GET the homepage', (done) => {
         chai.request(server)
             .get('/')
@@ -17,4 +17,4 @@ chai.use(chaiHttp);
               done();
             });
       });
-  });
+});
