@@ -8,9 +8,12 @@
     <title>Download from YouTube</title>
 
     <!-- Latest compiled and minified CSS & JS -->
-    <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
-    <script src="//code.jquery.com/jquery.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+    <!---- <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/custom.js"></script>
 
     <!-- GitHub star button -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
@@ -63,17 +66,39 @@
 </head>
 
 <body>
+    <!-- preloader section -->
+    <section class="preloader">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </section>
+
+    <!--main section-->
     <div class="container">
+        <div class="data">
         <form id="dl-form" action="dl" method="GET" onsubmit="clearInputs()">
-            <legend>Download MP3 from YouTube</legend>
+            <legend class="heading animated fadeIn delay-3s ">Download MP3 from YouTube</legend>
 
             <div class="col-xs-12">
                 <div class="form-group">
-                    <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow @david-kroell</a>
+                    <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow
+                        @david-kroell</a>
 
-                    <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked" data-size="large"
-                        aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
-                    <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large" data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked"
+                        data-size="large" aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
+                    <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large"
+                        data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
 
                 </div>
             </div>
@@ -127,6 +152,7 @@
                 <button id="btn-get-link" type="button" class="btn btn-primary" onclick="copyLink()">Copy Download Link</button>
             </div>
         </form>
+        </div>
     </div>
 </body>
 
