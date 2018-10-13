@@ -1,0 +1,54 @@
+body {
+background: rgb(36,0,12);
+background: linear-gradient(90deg, rgba(36,0,12,1) 0%, rgba(215,11,11,1) 100%);
+font-family: 'Source Sans Pro', sans-serif;
+}
+
+h1 {
+    font-family: 'Roboto', sans-serif;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.container {
+    width:80%;
+    margin:auto;
+    overflow:hidden;
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 20px;
+    grid-auto-rows: minmax(100px, auto);
+}
+
+.bubble {
+    background: #363636;
+    border-radius: 10px;
+}
+
+label, input, textarea {
+    font-family : inherit;
+    font-size   : 1.5em;
+    border-radius: 10px;
+    width: 100%;
+  }
+
+label {
+    color: whitesmoke;
+}
+
+.row {
+    padding: 10px 0px;
+}
+.button {
+    background-color: #363636;
+    border: none;
+    color: whitesmoke;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
