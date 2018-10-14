@@ -13,8 +13,8 @@ describe('/GET homepage', () => {
         chai.request(server)
             .get('/')
             .end((err, res) => {
-                  res.should.have.status(200);
-              done();
+                res.should.have.status(200);
+                done();
             });
-      });
+    });
 });
