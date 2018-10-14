@@ -4,6 +4,7 @@
   "description": "Web-based YouTube MP3 downloader",
   "main": "ytdl.js",
   "dependencies": {
+    "animate.css": "^3.7.0",
     "body-parser": "^1.18.2",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
