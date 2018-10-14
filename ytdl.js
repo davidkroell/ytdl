@@ -46,8 +46,9 @@ app.get('/dl', function (req, res) {
     let ip;
     if (process.env.PROXY_HEADER_REAL_IP_KEY){
         ip = req.get(process.env.PROXY_HEADER_REAL_IP_KEY);
+    } else {
+        ip = req.connection.remoteAddress;
     }
-    ip = req.connection.remoteAddress;
 
     console.info(new Date().toISOString(), '[IP:' + ip + ']', '-',
         'start downloading', title, 'from', dlUrl);
