@@ -1,4 +1,5 @@
 # ytdl
+![Screenshot from ytdl](screenshot.png "Screenshot from ytdl")
 A simple web-based YouTube MP3 downloader
 
 ## Installation
