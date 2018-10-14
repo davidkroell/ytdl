@@ -84,3 +84,6 @@ app.get('/dl', function (req, res) {
 app.listen(port, () => {
     console.info('Listening on port', port);
 });
+
+// for testing purposes
+module.exports = app;
