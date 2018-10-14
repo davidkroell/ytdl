@@ -4,6 +4,19 @@ A simple web-based YouTube MP3 downloader
 
 ## Installation
 
+### From Dockerhub
+The official Docker image is hosted on [Dockerhub](https://hub.docker.com/r/davidkroell/ytdl/).
+
+```bash
+ docker run -d -p 3000:3000 \
+     --restart=always \
+     --name ytdl \
+     davidkroell/ytdl:1.3.1
+```
+
+### From source
+ytdl can also be built from source. For this, just follow along.
+
 ```bash
 # get the code and build a Docker image
 git clone https://github.com/david-kroell/ytdl
