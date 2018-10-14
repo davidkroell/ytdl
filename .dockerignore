@@ -9,3 +9,6 @@ README.md
 LICENSE
 .vscode
 ffmpeg*
+.github
+.eslintrc.json
+test
