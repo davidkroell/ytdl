@@ -2,7 +2,7 @@ process.env.NODE_ENV = 'test';
 
 let chai = require('chai');
 let chaiHttp = require('chai-http');
-let server = require('../../ytdl');
+let server = require('../ytdl');
 /* eslint-disable no-unused-vars */
 let should = chai.should();
 
