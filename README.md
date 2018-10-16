@@ -1,4 +1,10 @@
-# ytdl
+# ytdl 
+![Latest release](https://img.shields.io/github/release/david-kroell/ytdl.svg?style=flat-square&colorB=d83f87) 
+![GitHub License](https://img.shields.io/github/license/david-kroell/ytdl.svg?style=flat-square) 
+![GitHub contributors](https://img.shields.io/github/contributors/david-kroell/ytdl.svg?style=flat-square&colorB=green) 
+![Docker Pulls](https://img.shields.io/docker/pulls/davidkroell/ytdl.svg?style=flat-square) 
+![MicroBadger Size](https://img.shields.io/microbadger/image-size/davidkroell/ytdl.svg?style=flat-square)
+
 ![Screenshot from ytdl](screenshot.png "Screenshot from ytdl")
 A simple web-based YouTube MP3 downloader
 
