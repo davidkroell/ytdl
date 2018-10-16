@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>Download from YouTube</title>
+
+    <!-- Latest compiled and minified CSS & JS -->
+    <!---- <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
+
+    <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="./apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="./apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="./apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <link rel="stylesheet" href="css/animate.min.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300" rel="stylesheet">
+    <script src="js/jquery.min.js"></script>
+    <script src="js/custom.js"></script>
+
+    <!-- GitHub star button -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+    <script>
+        function clearInputs() {
+            setTimeout(() => {
+                $(".form-control:not(#startAt)").val('')
+                $(".form-control#startAt").val('00:00.000')
+            }, 1000);
+        }
+
+        function copyLink() {
+            //console.log("copying link");
+
+            let form = $("#dl-form");
+            let querystring = form.serialize();
+            let baseurl = window.location.href;
+            let action = form.attr("action");
+
+            //console.log(baseurl, action, querystring);
+
+            let downloadUrl = baseurl + action + "?" + querystring;
+
+            copyToClipboard(downloadUrl);
+            alert("Copied!")
+        }
+
+        const copyToClipboard = str => {
+            const el = document.createElement('textarea'); // Create a <textarea> element
+            el.value = str; // Set its value to the string that you want copied
+            el.setAttribute('readonly', ''); // Make it readonly to be tamper-proof
+            el.style.position = 'absolute';
+            el.style.left = '-9999px'; // Move outside the screen to make it invisible
+            document.body.appendChild(el); // Append the <textarea> element to the HTML document
+            const selected =
+                document.getSelection().rangeCount > 0 // Check if there is any content selected previously
+                ?
+                document.getSelection().getRangeAt(0) // Store selection if found
+                :
+                false; // Mark as false to know no selection existed before
+            el.select(); // Select the <textarea> content
+            document.execCommand('copy'); // Copy - only works as a result of a user action (e.g. click events)
+            document.body.removeChild(el); // Remove the <textarea> element
+            if (selected) { // If a selection existed before copying
+                document.getSelection().removeAllRanges(); // Unselect everything on the HTML document
+                document.getSelection().addRange(selected); // Restore the original selection
+            }
+        };
+    </script>
+</head>
+
+<body>
+    <!-- preloader section -->
+    <section class="preloader">
+        <div class="sk-circle">
+            <div class="sk-circle1 sk-child"></div>
+            <div class="sk-circle2 sk-child"></div>
+            <div class="sk-circle3 sk-child"></div>
+            <div class="sk-circle4 sk-child"></div>
+            <div class="sk-circle5 sk-child"></div>
+            <div class="sk-circle6 sk-child"></div>
+            <div class="sk-circle7 sk-child"></div>
+            <div class="sk-circle8 sk-child"></div>
+            <div class="sk-circle9 sk-child"></div>
+            <div class="sk-circle10 sk-child"></div>
+            <div class="sk-circle11 sk-child"></div>
+            <div class="sk-circle12 sk-child"></div>
+        </div>
+    </section>
+
+    <!--main section-->
+    <div class="container">
+        <div class="data">
+            <form id="dl-form" action="dl" method="GET" onsubmit="clearInputs()">
+                <legend class="heading animated fadeIn delay-3s ">Download MP3 from YouTube</legend>
+
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow
+                        @david-kroell</a>
+
+                        <a class="github-button" href="https://github.com/david-kroell/ytdl/fork" data-icon="octicon-repo-forked" data-size="large" aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
+                        <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large" data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
+
+                    </div>
+                </div>
+
+
+                <div class="col-xs-12">
+                    <div class="form-group">
+                        <label for="url">URL of the video*</label>
+                        <input type="text" class="form-control" id="url" placeholder="Paste URL here" name="url" required>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="title">Title (Filename)*</label>
+                        <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="artist">Artist</label>
+                        <input type="text" class="form-control" id="artist" placeholder="Artist" name="artist">
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="album">Album</label>
+                        <input type="text" class="form-control" id="album" placeholder="Album" name="album">
+                    </div>
+                </div>
+                <div class="clearfix"></div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="startAt">Start at</label>
+                        <input type="text" class="form-control" id="startAt" value="00:00.000" name="startAt">
+                    </div>
+                </div>
+
+                <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                    <div class="form-group">
+                        <label for="endAt">End at</label>
+                        <input type="text" class="form-control" id="endAt" placeholder="00:00.000" name="endAt">
+                    </div>
+                </div>
+
+                <div class="col-xs-12">
+                    <button id="btn-download" type="submit" class="btn btn-primary">Download</button>
+                    <button id="btn-get-link" type="button" class="btn btn-primary" onclick="copyLink()">Copy Download Link</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
