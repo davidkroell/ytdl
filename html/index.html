@@ -8,8 +8,6 @@
     <title>Download from YouTube</title>
 
     <!-- Latest compiled and minified CSS & JS -->
-    <!---- <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
-
     <link rel="apple-touch-icon" sizes="57x57" href="./apple-icon-57x57.png">
     <link rel="apple-touch-icon" sizes="60x60" href="./apple-icon-60x60.png">
     <link rel="apple-touch-icon" sizes="72x72" href="./apple-icon-72x72.png">
@@ -19,7 +17,7 @@
     <link rel="apple-touch-icon" sizes="144x144" href="./apple-icon-144x144.png">
     <link rel="apple-touch-icon" sizes="152x152" href="./apple-icon-152x152.png">
     <link rel="apple-touch-icon" sizes="180x180" href="./apple-icon-180x180.png">
-    <link rel="icon" type="image/png" sizes="192x192"  href="./android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./android-icon-192x192.png">
     <link rel="icon" type="image/png" sizes="32x32" href="./favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="./favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="./favicon-16x16.png">
@@ -105,10 +103,11 @@
     <!--main section-->
     <div class="container">
         <div class="data">
-        <form id="dl-form" action="dl" method="GET" onsubmit="clearInputs()">
-            <legend class="heading animated fadeIn delay-3s ">Download MP3 from YouTube</legend>
 
-            <div class="col-xs-12">
+            <form id="dl-form" action="dl" method="GET" onsubmit="clearInputs()">
+
+                <legend class="heading animated fadeIn delay-3sx ">Download MP3 from YouTube</legend>
+
                 <div class="form-group">
                     <a class="github-button" href="https://github.com/david-kroell" data-size="large" aria-label="Follow @david-kroell on GitHub">Follow
                         @david-kroell</a>
@@ -117,59 +116,41 @@
                         data-size="large" aria-label="Fork david-kroell/ytdl on GitHub">Fork</a>
                     <a class="github-button" href="https://github.com/david-kroell/ytdl" data-size="large"
                         data-show-count="true" aria-label="Star david-kroell/ytdl on GitHub">Star</a>
-
                 </div>
-            </div>
 
-
-            <div class="col-xs-12">
                 <div class="form-group">
                     <label for="url">URL of the video*</label>
                     <input type="text" class="form-control" id="url" placeholder="Paste URL here" name="url" required>
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="title">Title (Filename)*</label>
                     <input type="text" class="form-control" id="title" placeholder="Title" name="title" required>
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="artist">Artist</label>
                     <input type="text" class="form-control" id="artist" placeholder="Artist" name="artist">
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="album">Album</label>
                     <input type="text" class="form-control" id="album" placeholder="Album" name="album">
                 </div>
-            </div>
-            <div class="clearfix"></div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="startAt">Start at</label>
                     <input type="text" class="form-control" id="startAt" value="00:00.000" name="startAt">
                 </div>
-            </div>
 
-            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
                 <div class="form-group">
                     <label for="endAt">End at</label>
                     <input type="text" class="form-control" id="endAt" placeholder="00:00.000" name="endAt">
                 </div>
-            </div>
 
-            <div class="col-xs-12">
                 <button id="btn-download" type="submit" class="btn btn-primary">Download</button>
                 <button id="btn-get-link" type="button" class="btn btn-primary" onclick="copyLink()">Copy Download Link</button>
-            </div>
-        </form>
+            </form>
         </div>
     </div>
 </body>
