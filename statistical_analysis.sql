@@ -25,6 +25,7 @@ LIMIT 3;
 #Highest Traffic(Countries) in the last 7 days
 SELECT country 
 FROM download_stats 
-WHERE timestamp <= NOW() AND timestamp >= NOW() - INTERVAL 7 DAY GROUP BY country 
+WHERE timestamp <= NOW() AND timestamp >= NOW() - INTERVAL 7 DAY 
+GROUP BY country 
 ORDER BY COUNT(country) DESC 
 LIMIT 5;
