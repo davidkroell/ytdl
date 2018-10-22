@@ -11,4 +11,4 @@ COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
 RUN npm install --production && mv node_modules ../
 COPY . .
 EXPOSE 3000
-ENTRYPOINT [ "/usr/bin/env", "node", "/usr/src/app/ytdl.js" ]
+ENTRYPOINT [ "/usr/bin/env", "node", "/usr/src/app/app.js" ]

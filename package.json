@@ -1,23 +1,26 @@
 {
   "name": "ytdl",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "Web-based YouTube MP3 downloader",
-  "main": "ytdl.js",
+  "main": "app.js",
   "dependencies": {
     "animate.css": "^3.7.0",
     "body-parser": "^1.18.2",
     "chai": "^4.2.0",
     "chai-http": "^4.2.0",
+    "dotenv": "^6.1.0",
     "express": "^4.16.3",
     "fluent-ffmpeg": "^2.1.2",
     "mocha": "^5.2.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0",
     "ytdl-core": "^0.20.2"
   },
   "devDependencies": {
     "eslint": "^5.4.0"
   },
   "scripts": {
-    "start": "npm run lint && node ./ytdl.js",
+    "start": "npm run lint && node ./app.js",
     "lint": "./node_modules/.bin/eslint .",
     "lint-fix": "./node_modules/.bin/eslint . --fix",
     "test": "mocha"

@@ -1,2 +1,4 @@
 /node_modules
-/ffmpeg.exe
+/ffmpeg*
+/.env
+/tmp
