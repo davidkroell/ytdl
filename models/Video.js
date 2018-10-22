@@ -1,20 +1,12 @@
-const mysql = require('mysql');
 const fs = require('fs');
 const ytdl = require('ytdl-core');
 const ffmpeg = require('fluent-ffmpeg');
 const util = require('util');
+const db = require('./Db');
 
-var dbHost = process.env.DB_HOST;
-var dbDatabase = process.env.DB_DATABASE;
-var dbUser = process.env.DB_USERNAME;
-var dbPassword = process.env.DB_PASSWORD;
 var tmpPath = process.env.CACHE_DIR;
 
-var queries = {
-    test: 'SELECT 1 + 1 AS solution;'
-};
-
-class YTVideo {
+class Video {
     /**
      * @param {string} url
      */
@@ -23,15 +15,14 @@ class YTVideo {
     }
 
     static getFromDb() {
-        let connection = this._connectDb();
+        let connection = db.getConnection();
 
-        connection.query(queries.test, (error, results, fields) => {
+        connection.query(db.queries.allvideos, (error, results) => {
             if (error) {
                 throw error;
             }
 
-            console.log('The solution is: ', results[0].solution);
-            console.log('The fields are: ', fields);
+            console.log('The solution is: ', results);
         });
 
         connection.end();
@@ -45,8 +36,12 @@ class YTVideo {
         let path = tmpPath + '/' + this.videoId + '.' + this.format;
         let stream = this.getDownloadStream();
 
-        stream.pipe(fs.createWriteStream(path));
+        stream.pipe(fs.createWriteStream(path), {end: true});
         return path;
+    }
+
+    saveToDb() {
+        // todo
     }
 
     getDownloadStream() {
@@ -79,7 +74,8 @@ class YTVideo {
     _calcTimes() {
         // calculate duration from start and end time
         // format:  mm:ss[.xxx]
-        let convertionHelper = this.startAt.split(':'); // split it at the colons
+        // split it at the colons
+        let convertionHelper = this.startAt.split(':');
         // minutes are worth 60 seconds. Hours are worth 60 minutes.
         let startSeconds = (+convertionHelper[0]) * 60 + (+convertionHelper[1]);
 
@@ -90,29 +86,17 @@ class YTVideo {
 
         this.duration = endSeconds - startSeconds;
     }
-
-    _connectDb() {
-        let connection = mysql.createConnection({
-            host: dbHost,
-            user: dbUser,
-            password: dbPassword,
-            database: dbDatabase
-        });
-
-        connection.connect();
-
-        return connection;
-    }
 }
 
-YTVideo.prototype.videoId = '';
-YTVideo.prototype.title = '';
-YTVideo.prototype.artist = '';
-YTVideo.prototype.startAt = '00:00.000';
-YTVideo.prototype.endAt = '';
-YTVideo.prototype.format = '';
-YTVideo.prototype.duration = '';
-YTVideo.prototype.audioBitrate = 128;
-YTVideo.prototype.publisherStr = 'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
+Video.prototype.videoId = '';
+Video.prototype.title = '';
+Video.prototype.artist = '';
+Video.prototype.startAt = '00:00.000';
+Video.prototype.endAt = '';
+Video.prototype.format = '';
+Video.prototype.duration = '';
+Video.prototype.audioBitrate = 128;
+// eslint-disable-next-line max-len
+Video.prototype.publisherStr = 'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
 
-module.exports = YTVideo;
+module.exports = Video;

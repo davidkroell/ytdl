@@ -4,10 +4,12 @@ const express = require('express');
 // eslint-disable-next-line new-cap
 const router = express.Router();
 
-const YTVideo = require('../models/YTVideo');
+const Video = require('../models/Video');
 
 router.get('/', (req, res) => {
-    let vid = new YTVideo(req.query.url);
+    Video.getFromDb();
+
+    let vid = new Video(req.query.url);
     vid.title = req.query.title;
     vid.artist = req.query.artist;
     vid.album = req.query.album;
