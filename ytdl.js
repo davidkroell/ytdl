@@ -14,10 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use(express.static(__dirname + '/html'));
 
-app.get('/', function (req, res) {
-    res.send('index.html');
-});
-
 app.get('/dl', function (req, res) {
     let dlUrl = req.query.url;
 
