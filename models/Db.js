@@ -10,7 +10,10 @@ var dbConnectionLimit = process.env.DB_CONNECTION_LIMIT;
 var dbQueueLimit = process.env.DB_QUEUE_LIMIT;
 
 const publicQueries = {
-    allMedia: 'SELECT * FROM media;'
+    allMedia: 'SELECT * FROM media;',
+    startTransaction: 'START TRANSACTION;',
+    commit: 'COMMIT;',
+    rollback: 'ROLLBACK;'
 };
 
 const queries = {
@@ -28,24 +31,24 @@ const queries = {
     )`
 };
 
-const connPool = mysql.createPool({
+const pool = mysql.createPool({
     host: dbHost,
     user: dbUser,
     password: dbPassword,
     database: dbDatabase,
-    waitForConnections: true,
-    connectionLimit: 10,
-    queueLimit: 0
+    waitForConnections: dbWaitConnection,
+    connectionLimit: dbConnectionLimit,
+    queueLimit: dbQueueLimit
 });
 
 class Db {
-    static buildSchema() {
-        connPool.query('SELECT 1+1 as result')
-            .then((result) => {
-                console.log(result);
-                }).catch((err) => {
-                console.log(err); // any of connection time or query time errors from above
-                });
+    static async buildSchema() {
+        var conn = await pool.getConnection();
+        await conn.beginTransaction();
+        await conn.query(queries.dropMedia);
+        await conn.query(queries.createMedia);
+        await conn.release();
+        console.info('Schema built successful');
     }
 
     static init(){
