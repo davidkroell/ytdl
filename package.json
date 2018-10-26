@@ -13,7 +13,7 @@
     "fluent-ffmpeg": "^2.1.2",
     "mocha": "^5.2.0",
     "morgan": "^1.9.1",
-    "mysql": "^2.16.0",
+    "mysql2": "^1.6.1",
     "ytdl-core": "^0.20.2"
   },
   "devDependencies": {

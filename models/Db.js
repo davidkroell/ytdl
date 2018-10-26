@@ -1,18 +1,21 @@
-const mysql = require('mysql');
+const mysql = require('mysql2/promise');
 
 var dbHost = process.env.DB_HOST;
 var dbDatabase = process.env.DB_DATABASE;
 var dbUser = process.env.DB_USERNAME;
 var dbPassword = process.env.DB_PASSWORD;
 var buildSchema = process.env.DB_UPDATE_SCHEMA;
+var dbWaitConnection = process.env.DB_WAIT_FOR_CONNECTIONS;
+var dbConnectionLimit = process.env.DB_CONNECTION_LIMIT;
+var dbQueueLimit = process.env.DB_QUEUE_LIMIT;
 
 const publicQueries = {
-    allvideos: 'SELECT * FROM videos;'
+    allMedia: 'SELECT * FROM media;'
 };
 
 const queries = {
-    dropVideos: 'DROP TABLE IF EXISTS videos;',
-    createVideos: `CREATE TABLE videos
+    dropMedia: 'DROP TABLE IF EXISTS media;',
+    createMedia: `CREATE TABLE media
     (
       id       int PRIMARY KEY AUTO_INCREMENT,
       title    varchar(50),
@@ -25,44 +28,24 @@ const queries = {
     )`
 };
 
+const connPool = mysql.createPool({
+    host: dbHost,
+    user: dbUser,
+    password: dbPassword,
+    database: dbDatabase,
+    waitForConnections: true,
+    connectionLimit: 10,
+    queueLimit: 0
+});
+
 class Db {
-    static getConnection() {
-        let connection = mysql.createConnection({
-            host: dbHost,
-            user: dbUser,
-            password: dbPassword,
-            database: dbDatabase
-        });
-
-        connection.connect();
-
-        return connection;
-    }
-
     static buildSchema() {
-        let conn = this.getConnection();
-
-        conn.beginTransaction(() => {
-            conn.query(queries.dropVideos, (err) => {
-                if (err){
-                    throw err;
-                }
-                conn.query(queries.createVideos, (err) => {
-                    if (err){
-                        throw err;
-                    }
-
-                    conn.commit(() => {
-                        if (err) {
-                            conn.rollback(function() {
-                              throw err;
-                            });
-                          }
-                          console.log('Schema built successfully');
-                    });
+        connPool.query('SELECT 1+1 as result')
+            .then((result) => {
+                console.log(result);
+                }).catch((err) => {
+                console.log(err); // any of connection time or query time errors from above
                 });
-            });
-        });
     }
 
     static init(){

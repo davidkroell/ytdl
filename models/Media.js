@@ -6,18 +6,18 @@ const db = require('./Db');
 
 var tmpPath = process.env.CACHE_DIR;
 
-class Video {
+class Media {
     /**
      * @param {string} url
      */
     constructor(url) {
-        this.videoId = ytdl.getVideoID(url);
+        this.MediaId = ytdl.getVideoID(url);
     }
 
     static getFromDb() {
         let connection = db.getConnection();
 
-        connection.query(db.queries.allvideos, (error, results) => {
+        connection.query(db.queries.allMedia, (error, results) => {
             if (error) {
                 throw error;
             }
@@ -33,7 +33,7 @@ class Video {
 
         console.log(this);
 
-        let path = tmpPath + '/' + this.videoId + '.' + this.format;
+        let path = tmpPath + '/' + this.MediaId + '.' + this.format;
         let stream = this.getDownloadStream();
 
         stream.pipe(fs.createWriteStream(path), {end: true});
@@ -45,7 +45,7 @@ class Video {
     }
 
     getDownloadStream() {
-        let stream = ytdl(this.videoId);
+        let stream = ytdl(this.MediaId);
 
         let output = ffmpeg(stream)
             .audioBitrate(this.audioBitrate)
@@ -88,15 +88,15 @@ class Video {
     }
 }
 
-Video.prototype.videoId = '';
-Video.prototype.title = '';
-Video.prototype.artist = '';
-Video.prototype.startAt = '00:00.000';
-Video.prototype.endAt = '';
-Video.prototype.format = '';
-Video.prototype.duration = '';
-Video.prototype.audioBitrate = 128;
+Media.prototype.MediaId = '';
+Media.prototype.title = '';
+Media.prototype.artist = '';
+Media.prototype.startAt = '00:00.000';
+Media.prototype.endAt = '';
+Media.prototype.format = '';
+Media.prototype.duration = '';
+Media.prototype.audioBitrate = 128;
 // eslint-disable-next-line max-len
-Video.prototype.publisherStr = 'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
+Media.prototype.publisherStr = 'Downloaded from YouTube using https://github.com/david-kroell/ytdl';
 
-module.exports = Video;
+module.exports = Media;
