@@ -48,3 +48,9 @@ SELECT CASE direct_download
        (SELECT COUNT(direct_download) AS total FROM download_stats) AS percent
 FROM download_stats
 GROUP BY direct_download;
+
+# Typical days of week when people prefer more entertainment
+SELECT DAYNAME(timestamp) AS WeekDay,COUNT(1) AS ViewCount
+FROM download_stats
+GROUP BY DAYNAME(timestamp)
+ORDER BY COUNT(1) DESC;
