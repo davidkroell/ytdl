@@ -77,3 +77,17 @@ WHERE timestamp <= NOW()
   AND timestamp >= NOW() - INTERVAL 7 DAY
 GROUP BY format
 ORDER BY COUNT(format) DESC
+
+
+#Most downloaded formats ranking of All time
+SELECT format, COUNT(format) AS total
+FROM download_stats
+GROUP BY format
+ORDER BY COUNT(format) DESC
+
+#Most downloaded formats per country of All time
+SELECT country, format
+FROM download_stats
+GROUP BY country, format
+ORDER BY COUNT(format) DESC
+LIMIT 1;
